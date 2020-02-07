@@ -7,6 +7,11 @@ namespace PersonGenerator
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+
+            string[] lastNames = new string[10];
+            string[] maleFirstNames = new string[10];
+            string[] femailFirstNames = new string[10];
         }
     }
 }
@@ -22,4 +27,4 @@ namespace PersonGenerator
 //versionB: offer to store results in file
 //versionC: ask for file paths to name for male, female, last names
 //versionD: use console application
-//versionE: use sqlite database to store(with LINQ)
+//versionE: use sqlite database to store(with LINQ) normalize to 3rd normal form (separate address for people, address)
