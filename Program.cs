@@ -12,15 +12,33 @@ namespace PersonGenerator
 
         static void Main(string[] args)
         {
+            string userInputString;
+            int userInputInt;
             string name;
+            string address;
+            string email;
+            string phone;
             StreamReader sr;
             List<string> femaleFirstNames = new List<string>();
             List<string> lastNames = new List<string>();
             List<string> maleFirstNames = new List<string>();
+            List<string> streetAddresses = new List<string>();
+            List<string> emailAddresses = new List<string>();
+            List<string> phoneNumbers = new List<string>();
 
-            string femaleFirstNamesPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\femaleFirstNames.txt";
-            string lastNamesPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\lastNames.txt";
-            string maleFirstNamesPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\maleFirstNames.txt";
+            //string femaleFirstNamesPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\femaleFirstNames.txt";
+            //string lastNamesPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\lastNames.txt";
+            //string maleFirstNamesPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\maleFirstNames.txt";
+            //string streetAddressPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\streetAddress.txt";
+            //string emailAddressPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\emailAddress.txt";
+            //string phoneNumbersPath = @"C:\Users\TPaul9\source\repos\PersonGenerator\data\phoneNumber.txt";
+
+            string femaleFirstNamesPath = @"C:\Users\Hyper10n\source\repos\PersonGenerator\data\femaleFirstNames.txt";
+            string lastNamesPath = @"C:\Users\Hyper10n\source\repos\PersonGenerator\data\lastNames.txt";
+            string maleFirstNamesPath = @"C:\Users\Hyper10n\source\repos\PersonGenerator\data\maleFirstNames.txt";
+            string streetAddressPath = @"C:\Users\Hyper10n\source\repos\PersonGenerator\data\streetAddress.txt";
+            string emailAddressPath = @"C:\Users\Hyper10n\source\repos\PersonGenerator\data\emailAddress.txt";
+            string phoneNumbersPath = @"C:\Users\Hyper10n\source\repos\PersonGenerator\data\phoneNumber.txt";
 
             using (sr = new StreamReader(femaleFirstNamesPath))
             {
@@ -45,6 +63,34 @@ namespace PersonGenerator
                     maleFirstNames.Add(name);
                 }
             }
+
+            using (sr = new StreamReader(streetAddressPath))
+            {
+                while ((address = sr.ReadLine()) != null)
+                {
+                    streetAddresses.Add(address);
+                }
+            }
+
+            using (sr = new StreamReader(emailAddressPath))
+            {
+                while ((email = sr.ReadLine()) != null)
+                {
+                    emailAddresses.Add(email);
+                }
+            }
+
+            using (sr = new StreamReader(phoneNumbersPath))
+            {
+                while ((phone = sr.ReadLine()) != null)
+                {
+                    phoneNumbers.Add(phone);
+                }
+            }
+
+            //Console.WriteLine("Do you want to generate 1: Males or 2: Females?");
+            //Console.ReadLine(""); // FIXME: Add error checking should only be 1 or 2 (use switch) use tryParse with out keyword & variable
+
         }
     }
 }
