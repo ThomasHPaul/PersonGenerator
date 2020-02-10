@@ -7,18 +7,14 @@ namespace PersonGenerator
     class Program
     {
 
-
-
-
-        static void Main(string[] args)
+        static void Main() /* Rosalyn analyzer recommended removal of Main( parameters ) */
         {
-            string userInputString;
-            int userInputInt;
             string name;
             string address;
             string email;
             string phone;
-            string gender;
+            bool gender;
+
             StreamReader sr;
             List<string> femaleFirstNames = new List<string>();
             List<string> lastNames = new List<string>();
@@ -90,36 +86,24 @@ namespace PersonGenerator
             }
 
             Console.WriteLine("Do you want to generate 1: Males or 2: Females?");
-            userInputString = Console.ReadLine();
-
-            bool validInt = int.TryParse(userInputString, out userInputInt);
+            bool validInt = int.TryParse(Console.ReadLine(), out int userInputInt);
             if (!validInt)
             {
                 Console.WriteLine("Please enter a whole number ex. 1 or 2");
                 Environment.Exit(0);
             }
 
-            switch(userInputInt)
+            if (userInputInt == 1)
             {
-                case 1:
-                    gender = "male";
-                    break;
-                case 2:
-                    gender = "female";
-                    break;
-                default:
-                    Console.WriteLine("Please enter 1 or 2 only. System exiting");
-                    Environment.Exit(0);
-                    break; // maintains code compliance
+                gender = true;
+            }
+            else
+            {
+                gender = false;
             }
 
-            userInputString = "";
-            userInputInt = -1;
-            Console.WriteLine($"How many {gender}s do you want to print to console?"); // FIXME: change in future version to offer printing to console or text file (or passing to another application?)
-            Console.ReadLine(userInputString);
-
-            validInt = false;
-            validInt = int.TryParse(userInputString, out userInputInt);
+            Console.WriteLine($"How many people do you want to print to console?"); // FIXME: change in future version to offer printing to console or text file (or passing to another application?)
+            validInt = int.TryParse(Console.ReadLine(), out userInputInt);
 
             if (!validInt)
             {
@@ -128,10 +112,38 @@ namespace PersonGenerator
             }
 
 
+            string firstName;
+            string lastName;
+            int age;
+            string streetAddress;
+            string emailAddress;
+            string phoneNumber;
 
-            TryGet
-            //Console.ReadLine(""); // FIXME: Add error checking should only be 1 or 2 (use switch) use tryParse with out keyword & variable
+            Random rnd = new Random();
 
+            for (int i = 0; i < userInputInt; ++i)
+            {
+                if (gender)
+                {
+                    /*  male  */
+                    firstName = maleFirstNames[rnd.Next(maleFirstNames.Count)];
+                }
+                else
+                {
+                    /* female */
+                    firstName = femaleFirstNames[rnd.Next(femaleFirstNames.Count)];
+                }
+                lastName = lastNames[rnd.Next(lastNames.Count)];
+
+                name = $"{firstName}  {lastName}";
+                age = rnd.Next(90);
+                streetAddress = streetAddresses[rnd.Next(streetAddresses.Count)];
+                emailAddress = emailAddresses[rnd.Next(emailAddresses.Count)];
+                phoneNumber = phoneNumbers[rnd.Next(phoneNumbers.Count)];
+
+                Person person = new Person(name, gender, age, streetAddress, emailAddress, phoneNumber);
+                person.print();
+            }
         }
     }
 }
@@ -144,7 +156,8 @@ namespace PersonGenerator
 //5. return the full path to file
 
 //versionA: print results to console
-//versionB: offer to store results in file
-//versionC: ask for file paths to name for male, female, last names
-//versionD: use console application
-//versionE: use sqlite database to store(with LINQ) normalize to 3rd normal form (separate address for people, address)
+//versionB: offer to print both genders
+//versionC: offer to store results in file
+//versionD: ask for file paths to name for male, female, last names
+//versionE: use console application
+//versionF: use sqlite database to store(with LINQ) normalize to 3rd normal form (separate address for people, address)

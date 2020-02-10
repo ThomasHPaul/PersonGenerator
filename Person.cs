@@ -24,6 +24,20 @@ namespace PersonGenerator
             this.phoneNumber = phoneNumber;
         }
 
+        public string print()
+        {
+            string genderString;
+            if (isMale)
+            {
+                genderString = "Mr.";
+            }
+            else
+            {
+                genderString = "Mrs.";
+            }
+            return $"{genderString} {name} is {age} and lives at {address}. They may be reached by phone at {phoneNumber} or by email at {emailAddress}.";
+        }
+
         public string GetName()
         {
             return this.name;
