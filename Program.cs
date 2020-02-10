@@ -18,6 +18,7 @@ namespace PersonGenerator
             string address;
             string email;
             string phone;
+            string gender;
             StreamReader sr;
             List<string> femaleFirstNames = new List<string>();
             List<string> lastNames = new List<string>();
@@ -88,7 +89,47 @@ namespace PersonGenerator
                 }
             }
 
-            //Console.WriteLine("Do you want to generate 1: Males or 2: Females?");
+            Console.WriteLine("Do you want to generate 1: Males or 2: Females?");
+            userInputString = Console.ReadLine();
+
+            bool validInt = int.TryParse(userInputString, out userInputInt);
+            if (!validInt)
+            {
+                Console.WriteLine("Please enter a whole number ex. 1 or 2");
+                Environment.Exit(0);
+            }
+
+            switch(userInputInt)
+            {
+                case 1:
+                    gender = "male";
+                    break;
+                case 2:
+                    gender = "female";
+                    break;
+                default:
+                    Console.WriteLine("Please enter 1 or 2 only. System exiting");
+                    Environment.Exit(0);
+                    break; // maintains code compliance
+            }
+
+            userInputString = "";
+            userInputInt = -1;
+            Console.WriteLine($"How many {gender}s do you want to print to console?"); // FIXME: change in future version to offer printing to console or text file (or passing to another application?)
+            Console.ReadLine(userInputString);
+
+            validInt = false;
+            validInt = int.TryParse(userInputString, out userInputInt);
+
+            if (!validInt)
+            {
+                Console.WriteLine("Please enter a whole number ex. 1, 2, 50, etc...");
+                Environment.Exit(0);
+            }
+
+
+
+            TryGet
             //Console.ReadLine(""); // FIXME: Add error checking should only be 1 or 2 (use switch) use tryParse with out keyword & variable
 
         }
