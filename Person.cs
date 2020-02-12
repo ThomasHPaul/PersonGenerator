@@ -24,18 +24,21 @@ namespace PersonGenerator
             this.phoneNumber = phoneNumber;
         }
 
-        public void print()
+        public void Print()
         {
-            string genderString;
-            if (isMale)
+            string genderString = "";
+            if (age >= 18)
             {
-                genderString = "Mr.";
+                if (isMale)
+                {
+                    genderString = "Mr. ";
+                }
+                else
+                {
+                    genderString = "Mrs. ";
+                }
             }
-            else
-            {
-                genderString = "Mrs.";
-            }
-            Console.WriteLine($"{genderString} {name} is {age} and lives at {address}. They may be reached by phone at {phoneNumber} or by email at {emailAddress}.");
+            Console.WriteLine($"{genderString}{name} is {age} and lives at {address}. They may be reached by phone at {phoneNumber} or by email at {emailAddress}.");
         }
 
         public string GetName()
