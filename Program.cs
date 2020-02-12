@@ -155,7 +155,7 @@ namespace PersonGenerator
 //4. ask the user if they want to write results to file(ask for input)
 //5. return the full path to file
 
-//versionA: print results to console
+//versionA: DONE - print results to console
 //versionB: offer to print both genders
 //versionC: offer to store results in file
 //versionD: ask for file paths to name for male, female, last names

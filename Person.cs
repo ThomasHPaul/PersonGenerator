@@ -24,7 +24,7 @@ namespace PersonGenerator
             this.phoneNumber = phoneNumber;
         }
 
-        public string print()
+        public void print()
         {
             string genderString;
             if (isMale)
@@ -35,7 +35,7 @@ namespace PersonGenerator
             {
                 genderString = "Mrs.";
             }
-            return $"{genderString} {name} is {age} and lives at {address}. They may be reached by phone at {phoneNumber} or by email at {emailAddress}.";
+            Console.WriteLine($"{genderString} {name} is {age} and lives at {address}. They may be reached by phone at {phoneNumber} or by email at {emailAddress}.");
         }
 
         public string GetName()
