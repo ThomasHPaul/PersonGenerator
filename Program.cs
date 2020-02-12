@@ -13,7 +13,9 @@ namespace PersonGenerator
             string address;
             string email;
             string phone;
-            bool gender;
+            int gender;
+            int randomGender;
+            bool isMale;
 
             StreamReader sr;
             List<string> femaleFirstNames = new List<string>();
@@ -85,25 +87,16 @@ namespace PersonGenerator
                 }
             }
 
-            Console.WriteLine("Do you want to generate 1: Males or 2: Females?");
-            bool validInt = int.TryParse(Console.ReadLine(), out int userInputInt);
+            Console.WriteLine("Do you want to generate 1: Males or 2: Females or 3: Both?");
+            bool validInt = int.TryParse(Console.ReadLine(), out gender);
             if (!validInt)
             {
                 Console.WriteLine("Please enter a whole number ex. 1 or 2");
                 Environment.Exit(0);
             }
 
-            if (userInputInt == 1)
-            {
-                gender = true;
-            }
-            else
-            {
-                gender = false;
-            }
-
             Console.WriteLine($"How many people do you want to print to console?"); // FIXME: change in future version to offer printing to console or text file (or passing to another application?)
-            validInt = int.TryParse(Console.ReadLine(), out userInputInt);
+            validInt = int.TryParse(Console.ReadLine(), out int userInputInt);
 
             if (!validInt)
             {
@@ -123,15 +116,32 @@ namespace PersonGenerator
 
             for (int i = 0; i < userInputInt; ++i)
             {
-                if (gender)
+                if (gender == 1)
                 {
                     /*  male  */
                     firstName = maleFirstNames[rnd.Next(maleFirstNames.Count)];
+                    isMale = true;
+                    
                 }
-                else
+                else if (gender == 2)
                 {
                     /* female */
                     firstName = femaleFirstNames[rnd.Next(femaleFirstNames.Count)];
+                    isMale = false;
+                }
+                else // Gender == 3
+                {
+                    randomGender = rnd.Next(1, 3);
+                    if (randomGender == 1)
+                    {
+                        firstName = maleFirstNames[rnd.Next(maleFirstNames.Count)];
+                        isMale = true;
+                    }
+                    else
+                    {
+                        firstName = femaleFirstNames[rnd.Next(femaleFirstNames.Count)];
+                        isMale = false;
+                    }
                 }
                 lastName = lastNames[rnd.Next(lastNames.Count)];
 
@@ -141,7 +151,7 @@ namespace PersonGenerator
                 emailAddress = emailAddresses[rnd.Next(emailAddresses.Count)];
                 phoneNumber = phoneNumbers[rnd.Next(phoneNumbers.Count)];
 
-                Person person = new Person(name, gender, age, streetAddress, emailAddress, phoneNumber);
+                Person person = new Person(name, isMale, age, streetAddress, emailAddress, phoneNumber);
                 person.print();
             }
         }
@@ -156,8 +166,11 @@ namespace PersonGenerator
 //5. return the full path to file
 
 //versionA: DONE - print results to console
-//versionB: offer to print both genders
+//versionB: DONE - offer to print both genders
+//verisonC: emailAddress is function of name and age @someDomain.topLevelDomain
 //versionC: offer to store results in file
 //versionD: ask for file paths to name for male, female, last names
 //versionE: use console application
 //versionF: use sqlite database to store(with LINQ) normalize to 3rd normal form (separate address for people, address)
+
+// Consider making area code align to address? (go by state?)
