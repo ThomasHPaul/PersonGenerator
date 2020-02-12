@@ -11,7 +11,6 @@ namespace PersonGenerator
         {
             string name;
             string address;
-            string email;
             string phone;
             int gender;
             string domain;
